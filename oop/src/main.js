@@ -1,7 +1,7 @@
 
 // Hall
 function main() {
-    console.log('Hello, world!')
+    const player = new Player(100, )
 }
 
 // Runnit
