@@ -14,13 +14,15 @@ class Game {
 
   playerTurn() {
     if(this.player.isAlive()) {
-      this.player.reduceHp(this.getDamage(this.boss.getDamage(), this.player.getArmor()))
+      // console.log({bossTakesDamage: this.getDamage(this.player.getDamage(), this.boss.getArmor())})
+      this.boss.reduceHp(this.getDamage(this.player.getDamage(), this.boss.getArmor()))
     }
   }
 
   bossTurn() {
     if(this.boss.isAlive()) {
-      this.boss.reduceHp(this.getDamage(this.player.getDamage(), this.boss.getArmor()))
+      // console.log({playerTakesDamage: this.getDamage(this.boss.getDamage(), this.player.getArmor())})
+      this.player.reduceHp(this.getDamage(this.boss.getDamage(), this.player.getArmor()))
     }
   }
 
@@ -41,12 +43,16 @@ class Game {
   }
 
   playGame() {
-      let nextTurn = this.playerTurn.bind(this)
+      let nextTurn = 'player'
       while (!this.isGameOver()) {
-        nextTurn()
-        nextTurn = nextTurn === this.playerTurn 
-          ? this.playerTurn.bind(this)
-          : this.bossTurn.bind(this)
+        if(nextTurn === 'player'){
+          nextTurn = 'boss'
+          this.playerTurn()
+
+        } else {
+          nextTurn = 'player'
+          this.bossTurn()
+        }
       } 
       return this.getWinner()
   }

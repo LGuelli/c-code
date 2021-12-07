@@ -12,8 +12,6 @@ class Weapon extends Item {
   }
 }
 
-
-
 class Armor extends Item {
   constructor(cost, armor, name) {
     super(cost, name)
@@ -40,40 +38,23 @@ class RingArmor extends Armor {}
 // Defense +2   40     0       2
 // Defense +3   80     0       3
 
-class Shop {
-  constructor() {
-    this.rings = [
-      new RingDamage(25, 1, 'RingDamage1'),
-      new RingDamage(50, 2, 'RingDamage2'),
-      new RingDamage(100, 3, 'RingDamage3'),
-      new RingArmor(20, 1, 'RingArmor1'),
-      new RingArmor(40, 2, 'RingArmor2'),
-      new RingArmor(80, 3, 'RingArmor3'),
-    ]
-    this.weapons = [
-        new Weapon(8, 4, 'Dagger'),
-        new Weapon(10, 5, 'Shortsword'),
-        new Weapon(25, 6, 'Warhammer'),
-        new Weapon(40, 7, 'Longsword'),
-        new Weapon(74, 8, 'Greataxe'),
-    ]
-    this.armor = [
-        new Armor(13, 1, 'Leather'),
-        new Armor(31, 2, 'Chainmail'),
-        new Armor(53, 3, 'Splintmail'),
-        new Armor(75, 4, 'Bandedmail'),
-        new Armor(102, 5, 'Platemail'),
-    ]
-
-    this.inventory = [...this.rings, ...this.weapons, ...this.armor]
-  }
-  
-  buy(name) {
-    const itemIndex = this.inventory.findIndex(item => name === item.name)
-
-    if (itemIndex >= 0) return this.inventory.splice(itemIndex, 1)[0]
-  }
+const items = { 
+  ringDamage1: new RingDamage(25, 1, 'RingDamage1'),
+  ringDamage2: new RingDamage(50, 2, 'RingDamage2'),
+  ringDamage3: new RingDamage(100, 3, 'RingDamage3'),
+  ringArmor1: new RingArmor(20, 1, 'RingArmor1'),
+  ringArmor2: new RingArmor(40, 2, 'RingArmor2'),
+  ringArmer3: new RingArmor(80, 3, 'RingArmor3'),
+  dagger: new Weapon(8, 4, 'Dagger'),
+  shortsword: new Weapon(10, 5, 'Shortsword'),
+  warhammer: new Weapon(25, 6, 'Warhammer'),
+  longsword: new Weapon(40, 7, 'Longsword'),
+  greataxe: new Weapon(74, 8, 'Greataxe'),
+  leather: new Armor(13, 1, 'Leather'),
+  chainmail: new Armor(31, 2, 'Chainmail'),
+  splintmail: new Armor(53, 3, 'Splintmail'),
+  bandedmail: new Armor(75, 4, 'Bandedmail'),
+  platemail: new Armor(102, 5, 'Platemail'),
 }
 
-module.exports = { Shop, Weapon }
-
+module.exports = { Weapon, RingDamage, RingArmor, Armor, items }

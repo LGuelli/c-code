@@ -27,7 +27,7 @@ class Player {
     }
 
     getArmor() { 
-        return this.armor?.armor ?? 0
+        return (this.armor?.armor ?? 0) + (this.rings.reduce((acc, r) => acc + (r?.armor || 0), 0))
     }
 
     getDamage() {
